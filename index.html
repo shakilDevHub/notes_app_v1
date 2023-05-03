@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+    <!-- Font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header"><a href="#" id="logo">Logo</a></div>
+    <div class="wrapper">
+        <div class="notes">
+            <!-- <div class="note">
+                <div class="details">
+                    <h3 class="title">This is title</h3>
+                    <h4 class="editedTime">02 | 05 | 23</h4>
+                    <button class="openNoteBtn">Open</button>
+                </div>
+            </div> -->
+        </div>
+        <div class="buttonsWrapper">
+            <button id="addNoteBtn">Add Note</button>
+            <button id="clearAllNote">Clear All</button>
+        </div>
+    </div>
+
+    <div id="addNote">
+        <h3>Add Note</h3>
+        <form>
+            <input type="text" name="noteTitle" id="addNoteTitle" placeholder="Note Title">
+            <input type="text" name="addNoteImg" id="addNoteImg" placeholder="Note Preview Image">
+            <textarea name="noteDescription" id="addNoteDescription" placeholder="Note Description"></textarea>
+            <button id="saveNote" class="disable">Save</button>
+            <button id="closeNote">Close</button>
+        </form>
+    </div>
+    
+    <div id="openNote">
+        <h3>Add Note</h3>
+        <form>
+            <input type="text" name="noteTitle" id="openNoteTitle" placeholder="Note Title">
+            <input type="text" name="opnNoteImg" id="opnNoteImg" placeholder="Note Preview Image">
+            <textarea name="noteDescription" id="openNoteDescription" placeholder="Note Description"></textarea>
+            <button id="saveOpenNote" class="disable">Save</button>
+            <button id="deleteOpenNote">Delete</button>
+            <button id="closeOpenNote">Close</button>
+        </form>
+    </div>
+    
+    <div id="nameEnter">
+        <form>
+            <h3>Note Taking App</h3>
+            <input type="text" name="userNameInp" id="userNameInp" placeholder="Enter your name">
+            <button id="userNameBtn">Enter Site</button>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
