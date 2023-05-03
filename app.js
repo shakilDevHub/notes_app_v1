@@ -79,7 +79,6 @@ let backgroundStyle = (element, url)=>{
     element.style.backgroundSize = 'cover';
     element.style.backgroundPosition = 'center';
     element.style.backgroundRepeat = 'no-repeat';
-    element.style.backgroundAttachment = 'fixed';
 }
 let createNoteHTML = (title, previewImg, date)=>{
     let div1 = document.createElement('div');
