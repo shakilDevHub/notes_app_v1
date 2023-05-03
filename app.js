@@ -163,19 +163,21 @@ document.addEventListener('click', (e)=>{
         opnNoteImg.value = noteList[indx][1];
         openNoteDescription.value = noteList[indx][2];
         openNote.classList.add('open');
-        openNoteTitle.addEventListener('input', ()=>{
+        let verificationOfChanges = ()=>{
             if(prevData[0] != openNoteTitle.value || prevData[1]!=opnNoteImg.value || prevData[2]!=openNoteDescription.value){
                 saveOpenNote.classList.remove('disable');
             }else{
                 saveOpenNote.classList.add('disable');
             }
+        }
+        openNoteTitle.addEventListener('input', ()=>{
+            verificationOfChanges();
+        })
+        opnNoteImg.addEventListener('input', ()=>{
+            verificationOfChanges();
         })
         openNoteDescription.addEventListener('input', ()=>{
-            if(prevData[0] != openNoteTitle.value || prevData[2]!=openNoteDescription.value){
-                saveOpenNote.classList.remove('disable');
-            }else{
-                saveOpenNote.classList.add('disable');
-            }
+            verificationOfChanges();
         })
         closeOpenNote.addEventListener('click', (e)=>{
             e.preventDefault();
