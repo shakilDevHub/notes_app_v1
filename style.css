@@ -181,9 +181,18 @@ h3{
 }
 #addNote form textarea,
 #openNote form textarea{
-    height: 20rem;
+    height: 23rem;
 }
-
+#openNote .buttonWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+#openNote .buttonWrapper button{
+    width: 100%;
+}
 /* Open Note popup ================================ */
 
 #nameEnter{
