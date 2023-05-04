@@ -209,10 +209,10 @@ document.addEventListener('click', (e)=>{
 
 addNoteTitle.value = "", addNoteDescription.value = "";
 addNoteTitle.addEventListener('input', ()=>{
-    (addNoteTitle.value!="" && addNoteDescription.value!="")? saveNote.classList.remove('disable'): saveNote.classList.add('disable');
+    (this.value!="" && addNoteDescription.value!="")? saveNote.classList.remove('disable'): saveNote.classList.add('disable');
 })
 addNoteDescription.addEventListener('input', ()=>{
-    (addNoteTitle.value!="" && addNoteDescription.value!="")? saveNote.classList.remove('disable'): saveNote.classList.add('disable');
+    (addNoteTitle.value!="" && this.value!="")? saveNote.classList.remove('disable'): saveNote.classList.add('disable');
 })
 
 saveNote.addEventListener('click', (e)=>{
