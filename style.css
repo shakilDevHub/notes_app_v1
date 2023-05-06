@@ -81,19 +81,16 @@ h3{
 /* NOtes UI ========================= */
 .notes{
     width: 100%;
-    /* display: grid; */
-    /* grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
-    /* grid-gap: 2rem; */
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 /* NOte UI ========================= */
 .note{
     text-align: center;
-    max-width: 30rem;
+    max-width: 32rem;
     width: 100%;
     aspect-ratio: 1/1;
     background: var(--lightColor);
@@ -103,11 +100,34 @@ h3{
     align-items: center;
     padding: 1.5rem;
     gap: 1rem;
+    background: url('https://images.unsplash.com/photo-1682687218982-6c508299e107?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 1rem;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+.note:hover{
+    transform: scale(0.95);
+    box-shadow: 0.5rem 1rem 1.5rem rgba(0, 0, 0, 0.3),
+    -0.3rem -0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+.note::before{
+    content: '';
+    position: absolute;
+    inset: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+    box-shadow: 0.5rem 1rem 1.5rem rgba(0, 0, 0, 0.3),
+    -0.3rem -0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    transition: inset 0.2s;
+}
+.note:hover::before{
+    inset: 2rem;
 }
 .details{
     padding: 1rem;
@@ -119,12 +139,15 @@ h3{
     justify-content: center;
     align-items: center;
     background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(7px);
     border-radius: 0.5rem;
 }
 .editedTime{
     font-size: 1.6rem;
     color: var(--themeColor);
+}
+.openNoteBtn{
+    width: 100%;
 }
 .buttonsWrapper{
     display: flex;
@@ -135,9 +158,10 @@ h3{
 #addNote,
 #openNote{
     width: 90%;
-    max-width: 50rem;
-    box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.3),
-    -0.3rem -0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+    max-width: 55rem;
+    height: 90%;
+    box-shadow: 0.5rem 1rem 1.5rem -0.2rem rgba(0, 0, 0, 0.3),
+    -0.3rem -0.5rem 0.5rem -0.1rem rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
     overflow: hidden;
     display: flex;
@@ -146,25 +170,32 @@ h3{
     align-items: center;
     padding: 1.5rem;
     gap: 1.5rem;
-    background: var(--backgroundColor);
+    /* background: var(--backgroundColor); */
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0.8);
+    pointer-events: none;
     opacity: 0;
     transition: 0.2s linear;
 }
 #addNote.open,
 #openNote.open{
     opacity: 1;
+    pointer-events: painted;
     transform: translate(-50%, -50%) scale(1);
 }
 #addNote form,
 #openNote form{
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 #addNote form input,
 #addNote form textarea,
@@ -172,16 +203,17 @@ h3{
 #openNote form textarea{
     padding: 1rem;
     resize: none;
-    border: 0.1rem solid var(--themeColor);
-    border-radius: 0.5rem;
+    border-top: 0.1rem solid var(--themeColor);
+    border-bottom: 0.1rem solid var(--themeColor);
     font-size: 1.6rem;
     font-family: var(--fontFamily);
     letter-spacing: 0.05rem;
     background: var(--backgroundColor);
+    backdrop-filter: blur(10px);
 }
 #addNote form textarea,
 #openNote form textarea{
-    height: 23rem;
+    height: 100%;
 }
 #openNote .buttonWrapper{
     width: 100%;
@@ -191,6 +223,142 @@ h3{
     gap: 1rem;
 }
 #openNote .buttonWrapper button{
+    width: 100%;
+}
+.historyBtn{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    background: var(--themeColor);
+    color: var(--backgroundColor);
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 1rem;
+    cursor: pointer;
+    z-index: 500;
+}
+.history{
+    position: absolute;
+    top: 0;
+    left: 0;
+    inset: 0;
+    background: var(--lightColor);
+    display: grid;
+    place-items: center;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: 0.2s;
+    z-index: 400;
+    opacity: 0;
+}
+.history.open{
+    pointer-events: painted;
+    transform: scale(1);
+    opacity: 1;
+}
+.history #historyListWrapper{
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+}
+.history ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    overflow: auto;
+    overflow-x: hidden;
+    gap: 0.5rem;
+}
+.history ul li{
+    width: 100%;
+    font-size: 1.6rem;
+    color: var(--themeColor);
+    background: var(--backgroundColor);
+    padding: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.history ul li span{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.history ul li:hover{
+    background: var(--themeColor);
+    color: var(--backgroundColor);
+}
+.historyData{
+    height: 90%;
+    width: 90%;
+    max-width: 55rem;
+    max-height: 90%;
+    min-height: 50rem;
+    overflow: hidden;
+    /* background: var(--lightColor); */
+    border-radius: 1rem;
+    padding: 2.5rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s linear;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+.historyData.open{
+    pointer-events: painted;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.historyData .content{
+    height: 100%;
+    width: 100%;
+    background: var(--backgroundColor);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    border-radius: 0.5rem;
+}
+.historyData .historyTime{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    padding-bottom: 1.5rem;
+}
+.historyData h3{
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 0.2rem solid var(--themeColor);
+}
+.historyData p{
+    font-size: 1.6rem;
+    padding-top: 2rem;
+}
+.historyData .btnWrapper{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+.historyData .btnWrapper button{
     width: 100%;
 }
 /* Open Note popup ================================ */
@@ -251,3 +419,4 @@ h3{
     opacity: 1;
     pointer-events: painted;
 }
+
