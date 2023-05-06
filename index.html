@@ -40,7 +40,7 @@
         <form>
             <input type="text" name="noteTitle" id="addNoteTitle" placeholder="Note Title">
             <input type="text" name="addNoteImg" id="addNoteImg" placeholder="Note Preview Image">
-            <textarea name="noteDescription" id="addNoteDescription" placeholder="Note Description" cols="30" rows="10"></textarea>
+            <textarea name="noteDescription" id="addNoteDescription" placeholder="Note Description" cols="30" rows="10" data-simplebar></textarea>
             <button id="saveNote" class="disable">Save</button>
             <button id="closeNote">Close</button>
         </form>
@@ -58,7 +58,7 @@
         <form>
             <input type="text" name="noteTitle" id="openNoteTitle" placeholder="Note Title">
             <input type="text" name="opnNoteImg" id="opnNoteImg" placeholder="Note Preview Image">
-            <textarea name="noteDescription" id="openNoteDescription" placeholder="Note Description" cols="30" rows="10"></textarea>
+            <textarea name="noteDescription" id="openNoteDescription" placeholder="Note Description" data-simplebar></textarea>
             <button id="saveOpenNote" class="disable">Save</button>
             <div class="buttonWrapper">
                 <button id="deleteOpenNote">Delete</button>
@@ -88,8 +88,13 @@
         </form>
     </div>
     <img src="" alt="" class="testImg" style="display: none;">
+
+
+    
     <script src="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.js"></script>
     <script>
+        new SimpleBar(document.getElementById('addNoteDescription'));
+        new SimpleBar(document.getElementById('openNoteDescription'));
         new SimpleBar(document.getElementById('historyListWrapper'));
         new SimpleBar(document.getElementById('historyDataText'));
     </script>
