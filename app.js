@@ -91,7 +91,6 @@ let getFullTime = ()=>{
     (min<10) && (min = '0'+min);
     let sec = date.getSeconds();
     (sec<10) && (sec = '0'+sec);
-    // console.log(date.getHours());
     return `${hour} : ${min} : ${sec} ${amPm}`;
 }
 getFullTime();
@@ -140,7 +139,6 @@ let createNoteHTML = (title, previewImg, date, time)=>{
 }
 let createHistoryListItem = (fullData)=>{
     historyList.innerHTML = ' ';
-    // console.table(fullData);
     fullData.forEach((data)=>{
         let li = document.createElement('li');
         let span1 = document.createElement('span');
@@ -155,7 +153,6 @@ let createHistoryListItem = (fullData)=>{
 
 let dataSet = ()=>{
     let getData = JSON.parse((window.localStorage.getItem('noteList')));
-    // console.table(getData);
     return getData;
 }
 
@@ -261,7 +258,6 @@ let saveOpenNoteFun = (title, imgLink, description)=>{
         arr.push(time());
         arr.push(getFullTime());
         let currentTime = date.getTime();
-        console.log(typeof currentTime);
         arr.push(currentTime);
         let editedHistory = noteList[indx][1];
         
@@ -291,9 +287,7 @@ let allHistoryLi;
 historyBtn.addEventListener('click', ()=>{
     createHistoryListItem(noteList[indx][1]);
     allHistoryLi = Array.from(historyList.children);
-    let count = 0;
     allHistoryLi.forEach((historyLi, i)=>{
-        count = 0;
         historyLi.addEventListener('click', ()=>{
             historyData.classList.add('open');
             historyTime.innerHTML = `<span>${noteList[indx][1][i].lastEditDate}</span>
@@ -305,10 +299,7 @@ historyBtn.addEventListener('click', ()=>{
                 historyData.classList.remove('open');
                 saveOpenNoteFun(noteList[indx][1][i].data[0], noteList[indx][1][i].data[1], noteList[indx][1][i].data[2], time())
             })
-            count++;
-            console.log('count == '+count);
         }, {once: true})
-        console.log('out count == '+count);
         closeHistoryData.addEventListener('click', (e)=>{
             e.preventDefault();
             historyData.classList.remove('open');
