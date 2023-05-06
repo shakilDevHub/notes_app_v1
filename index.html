@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Simplebar -->
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.css"/>
 </head>
 <body>
     <div class="header"><a href="#" id="logo">Logo</a></div>
@@ -31,30 +34,50 @@
             <button id="clearAllNote">Clear All</button>
         </div>
     </div>
-
+    
     <div id="addNote">
         <h3>Add Note</h3>
         <form>
             <input type="text" name="noteTitle" id="addNoteTitle" placeholder="Note Title">
             <input type="text" name="addNoteImg" id="addNoteImg" placeholder="Note Preview Image">
-            <textarea name="noteDescription" id="addNoteDescription" placeholder="Note Description"></textarea>
+            <textarea name="noteDescription" id="addNoteDescription" placeholder="Note Description" cols="30" rows="10"></textarea>
             <button id="saveNote" class="disable">Save</button>
             <button id="closeNote">Close</button>
         </form>
     </div>
     
     <div id="openNote">
+        <div class="history">
+           <div id="historyListWrapper" data-simplebar>
+                <ul id="historyList">
+                    <!-- <li>05 | 05 | 23</li> -->
+                </ul>
+           </div>
+        </div>
         <h3>Add Note</h3>
         <form>
             <input type="text" name="noteTitle" id="openNoteTitle" placeholder="Note Title">
             <input type="text" name="opnNoteImg" id="opnNoteImg" placeholder="Note Preview Image">
-            <textarea name="noteDescription" id="openNoteDescription" placeholder="Note Description"></textarea>
+            <textarea name="noteDescription" id="openNoteDescription" placeholder="Note Description" cols="30" rows="10"></textarea>
             <button id="saveOpenNote" class="disable">Save</button>
             <div class="buttonWrapper">
                 <button id="deleteOpenNote">Delete</button>
                 <button id="closeOpenNote">Close</button>
             </div>
         </form>
+        <i class="fa-solid fa-clock-rotate-left historyBtn"></i>
+    </div>
+
+    <div class="historyData">
+        <div class="content" id="historyDataText" data-simplebar>
+            <div class="historyTime" ></div>
+            <h3></h3>
+            <p></p>
+        </div>
+        <div class="btnWrapper">
+            <button class="saveHistoryData">Save it</button>
+            <button class="closeHistoryData">Close</button>
+        </div>
     </div>
     
     <div id="nameEnter">
@@ -64,7 +87,12 @@
             <button id="userNameBtn">Enter Site</button>
         </form>
     </div>
-
+    <img src="" alt="" class="testImg" style="display: none;">
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.js"></script>
+    <script>
+        new SimpleBar(document.getElementById('historyListWrapper'));
+        new SimpleBar(document.getElementById('historyDataText'));
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
